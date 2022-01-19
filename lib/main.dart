@@ -1,9 +1,17 @@
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/drawer_menu.dart';
 import 'package:flutter_app/Pages/home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -13,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
         routes: {
-          home: (context ) => const HomePage(),
+          home: (context ) => HomePage(),
         },
         home: Scaffold (
             appBar: AppBar(
@@ -27,7 +35,8 @@ class MyApp extends StatelessWidget {
             ),
             drawer: const DrawerMenu(),
             backgroundColor: const Color(0xffDDDBFF) ,
-            body: const HomePage()
+            body: HomePage(),
+
 
         //)
     )

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/pag_quilamo.dart';
-import 'package:flutter_app/Pages/santuario_macas.dart';
+import 'package:flutter_app/Pages/paquetes.dart';
+import 'package:flutter_app/Pages/mapa.dart';
+import 'package:flutter_app/main.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_app/Pages/paquete.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+  HomePage({Key? key}) : super(key: key);
 
   static const String routeName = '/home';
-
   @override
+
   Widget build(BuildContext context) {
     return   ListView(
         padding: EdgeInsets.only(top:0),
@@ -20,15 +26,20 @@ class HomePage extends StatelessWidget {
             child: const Text('MORONA SANTIAGO',
               style: TextStyle(fontSize: 16, color: Colors.black87, fontWeight: FontWeight.bold ),
               textAlign: TextAlign.center,  ),
+
+
           )),
 
           const Quilamo(),
-          const Prueba(),
+          Prueba(),
+    ]
 
-        ]
       );
+
   }
+
 }
+
 
 class Quilamo extends StatelessWidget{
   const Quilamo({Key? key}) : super(key: key);
@@ -119,15 +130,15 @@ class Quilamo extends StatelessWidget{
 }
 
 class Prueba extends StatelessWidget{
-  const Prueba({Key? key}) : super(key: key);
+   Prueba({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
 
-        onTap: (){
+        onTap:(){
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SantuarioMacas())
+              MaterialPageRoute(builder: (context) =>  FutureBuilderTest())
           );
         },
         child: Positioned(
@@ -147,43 +158,23 @@ class Prueba extends StatelessWidget{
               children: [
                 const Image(image: AssetImage('images/img_05.png' ) ,width: 240, height: 160,fit: BoxFit.fill),
                 const SizedBox(height: 8),
-                const Text('Santuario Nacional Purísima de Macas', style: TextStyle( color: Colors.black87,fontSize: 18 )),
+                const Text('Paquetes', style: TextStyle( color: Colors.black87,fontSize: 18 )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Text('Subtropical . 18 - 22.8°C', style: TextStyle(fontSize: 15, color: Colors.black45)),
                   ],
-                )
+                ),
+
               ],
             ),
           ),
         )
     );
   }
+
 }
 
-class _HeaderHomePainert extends CustomPainter {
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = new Paint();
 
-    paint.color = Color(0xff373851);
-    paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 5;
 
-    final path = new Path();
-    path.lineTo(0, size.height * 0.6);
-    path.quadraticBezierTo(
-        size.width * 0.2, size.height * 0.62, size.width * 0.6,
-        size.height * 0.45);
-    path.quadraticBezierTo(
-        size.width * 0.8, size.height * 0.35, size.width, size.height * 0.39);
-    path.lineTo(size.width, 0);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
-}
