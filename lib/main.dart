@@ -25,16 +25,16 @@ class MyApp extends StatelessWidget {
         },
         home: Scaffold (
             appBar: AppBar(
-                title: const Text('Turismo',
+                title: const Text('TURISMO APP',
                     style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                      )),
-                backgroundColor: const Color(0xff373851)
+                backgroundColor: const Color(0xff142855)
             ),
             drawer: const DrawerMenu(),
-            backgroundColor: const Color(0xffDDDBFF) ,
+            backgroundColor: const Color(0xffF0F3F8) ,
             body: HomePage(),
 
 

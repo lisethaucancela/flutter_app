@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "747554782957",
-    "firebase_url": "https://flutter01-7dd0e-default-rtdb.firebaseio.com",
-    "project_id": "flutter01-7dd0e",
-    "storage_bucket": "flutter01-7dd0e.appspot.com"
+    "project_number": "615268832964",
+    "firebase_url": "https://weka-53642-default-rtdb.firebaseio.com",
+    "project_id": "weka-53642",
+    "storage_bucket": "weka-53642.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:747554782957:android:2f08efcbae926b2cc416e4",
+        "mobilesdk_app_id": "1:615268832964:android:9dd83905e1df20e3f15b91",
         "android_client_info": {
           "package_name": "com.app.flutter_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "747554782957-h9n9tluu95kvgf6qomdc0dtjdjdnt1gc.apps.googleusercontent.com",
+          "client_id": "615268832964-idm8k7of2frpk85h9dmndahg85pdph0g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBFHLiwpyTn9rA-acCK_QboSxQgpkl2otQ"
+          "current_key": "AIzaSyAFkYO99-qoPeyk238punjDybxqGhm5laU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "747554782957-h9n9tluu95kvgf6qomdc0dtjdjdnt1gc.apps.googleusercontent.com",
+              "client_id": "615268832964-idm8k7of2frpk85h9dmndahg85pdph0g.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
