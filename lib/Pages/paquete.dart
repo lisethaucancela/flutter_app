@@ -21,28 +21,19 @@ class  ListaPaquetes extends State<FutureBuilderTest> {
 
   @override
   Widget build(BuildContext context) {
-    getData();
     return MaterialApp(
+
       home: Scaffold (
+        appBar: AppBar(
+            title: const Text('PAQUETES TURÍSTICOS',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w500,
+                )),
+            backgroundColor: const Color(0xff142855)
+        ),
       body:
-      //ListView(
-      // padding: const EdgeInsets.only(top:0),
-      //  scrollDirection: Axis.vertical,
-      // shrinkWrap: true,
-            //crossAxisAlignment: CrossAxisAlignment. stretch ,
-      //children: <Widget>[
-
-              /*ButtonBar(
-                children:[
-                  TextButton(
-                    child: const Text( 'View Record' ),
-                    onPressed: () {
-                      //Object _objdatabase = getData();
-                    },
-                  ),
-
-                ]
-              ),*/
 
         FutureBuilder(
           future:  FirebaseDatabase. instance .ref('Paquete').once(),
@@ -57,23 +48,24 @@ class  ListaPaquetes extends State<FutureBuilderTest> {
                 //List<dynamic> list = snapshot.data.snapshot.value;
 
                 return
-                  ListView.builder(
-                      padding:  const EdgeInsets.only(top:  40, left: 15, right: 15),
+
+                  GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 800,
+                          childAspectRatio: 7 / 6,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20),
+                      padding:  const EdgeInsets.only(top:  20, left: 15, right: 15, bottom:5 ),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: list.length,
                       itemBuilder: (BuildContext context, int index) {
-                        //print( 'dfd ${list[index]}');
-                        double latitud = double.parse(list[index]['latitud'].toString());
-                        double longitud = double.parse(list[index]['longitud'].toString());
-                        String nombre = list[index]['Nombre'].toString() ;
-
                         return
                           GestureDetector(
                             onTap:(){
                             Navigator.push(context,
                             MaterialPageRoute(builder: (context) =>
-                                descripcion_paquete(Latitud:latitud, Longitud: longitud,  Nombre:nombre ) )
+                                descripcion_paquete(Lista:list[index] ) )
                            );
                           },
                           child:
@@ -85,18 +77,18 @@ class  ListaPaquetes extends State<FutureBuilderTest> {
                                 //padding: const EdgeInsets.all(4.0),
                                 children: <Widget>[
                                   AspectRatio(
-                                    aspectRatio: 22.0 / 10.0,
+                                    aspectRatio: 18.0 / 11.0,
                                     child: Image.network(list[index]['url']),
                                   ),
 
                                   Padding(
-                                    padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                                    padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                                     child: Column(
                                     children: [
                                       //Image.network(list[index]['url']),
-                                      Text('${list[index]['Nombre']}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                                      const SizedBox(height: 10,),
-                                      Text(list[index]['Descripcion'],style: TextStyle(fontSize: 14)),
+                                      Text('${list[index]['Titulo']}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                                      const SizedBox(height: 5,),
+                                      Text(list[index]['Nombre'],style: TextStyle(fontSize: 14)),
                                     ],
                                   ),
                                 ),
