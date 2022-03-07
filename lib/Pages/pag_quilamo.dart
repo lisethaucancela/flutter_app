@@ -6,9 +6,8 @@ class PagQuilamo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-    home: Scaffold (
-        /*appBar: AppBar(
+    return   Scaffold (
+        appBar: AppBar(
           title: const Text('Mirador de Quilamo',
           style: TextStyle(
           color: Colors.white,
@@ -16,10 +15,10 @@ class PagQuilamo extends StatelessWidget {
           fontWeight: FontWeight.w500,
           )),
           backgroundColor: const Color(0xff373851)
-        ),*/
+        ),
 
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
 
         children:  [
           const Image(image: AssetImage('images/paisaje.jpg'),height: 240, fit: BoxFit.cover, ),
@@ -54,8 +53,7 @@ class PagQuilamo extends StatelessWidget {
         ],
       ),
 
-    ),
-    );
+    ) ;
   }
 }
 

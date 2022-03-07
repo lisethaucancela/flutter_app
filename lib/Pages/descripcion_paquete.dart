@@ -10,7 +10,6 @@ class descripcion_paquete extends StatelessWidget {
   late GoogleMapController mapController;
 
   dynamic Lista;
-
   descripcion_paquete({
     Key? key,
     required this.Lista,
@@ -23,13 +22,14 @@ class descripcion_paquete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double infoHeight = 340.0;
-    final double tempHeight = MediaQuery .of(context) .size .height -
-        (MediaQuery .of(context)  .size .width) +  24.0;
-    var size = MediaQuery .of(context) .size;
+    final double tempHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).size.width) +
+        24.0;
+    var size = MediaQuery.of(context).size;
     double latitud = double.parse(Lista['latitud'].toString());
     double longitud = double.parse(Lista['longitud'].toString());
     final CameraPosition _initialPosition =
-    CameraPosition(target: LatLng(latitud, longitud), zoom: 13);
+        CameraPosition(target: LatLng(latitud, longitud), zoom: 13);
     final Set<Marker> _markers = Set();
     _markers.add(
       Marker(
@@ -37,148 +37,150 @@ class descripcion_paquete extends StatelessWidget {
         position: LatLng(latitud, longitud),
       ),
     );
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-       /* appBar: AppBar(
-          title: Text(
-            Lista['Nombre'],
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.0,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          Lista['Nombre'],
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14.0,
           ),
-          backgroundColor: Color(0xff142855),
-        ),*/
-        body: DefaultTabController(
-          length: 2,
-          child: Column(
-            children: <Widget>[
-
-
-              Expanded(
-                child: Container(
-                  child: TabBarView(
+        ),
+        backgroundColor: Color(0xff142855),
+      ),
+      body: DefaultTabController(
+        length: 2,
+        child: Column(children: <Widget>[
+          Container(
+            constraints: BoxConstraints.expand(height: 50),
+            child: const TabBar(
+                indicatorWeight: 3,
+                indicatorColor: Color(0xff142855),
+                labelColor: Color(0xff142855),
+                unselectedLabelColor:  Color(0xff686D75),
+                tabs: [
+                  Tab(text: "Información"),
+                  Tab(text: "Mapa"),
+                ]),
+          ),
+          Expanded(
+            child: Container(
+              child: TabBarView(
+                children: [
+                  ListView(
                     children: [
-                      ListView(
-                        children: [
-                          getBody(size),
-
-                          Container(
-                            margin: EdgeInsets.only(top: 20),
-                            padding: EdgeInsets.only(left: 8, right: 8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32),
-                              color: Color(0xffE9EBF0),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
-                                    offset: const Offset(1.1, 1.1),
-                                    blurRadius: 10.0),
-                              ],
-                            ),
-                            //crossAxisAlignment: CrossAxisAlignment.start,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8, right: 8),
-                              child: Container(
-                                  constraints: BoxConstraints(
-                                      minHeight: infoHeight,
-                                      maxHeight: tempHeight > infoHeight
-                                          ? tempHeight
-                                          : infoHeight),
-                                  // crossAxisAlignment:   CrossAxisAlignment.start,
-                                  child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 0.0,
-                                              left: 18,
-                                              right: 16,
-                                              bottom: 16),
-                                          child: Text(
-                                            Lista['Nombre'].toString(),
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 20,
-                                              letterSpacing: 0.27,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Spacer(),
-                                            getTimeBoxUI(
-                                                Lista['temperatura'].toString(),
-                                                'temperatura',
-                                                Icon(Icons.cloud)),
-                                            Spacer(),
-                                            getTimeBoxUI(
-                                                Lista['distancia'].toString(),
-                                                'Time',
-                                                Icon(Icons.timelapse_rounded)),
-                                            Spacer(),
-
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 16,
-                                              right: 16,
-                                              top: 18,
-                                              bottom: 8),
-                                          child: Text(
-                                              Lista['Descripcion'].toString(),
-                                              textAlign: TextAlign.justify,
-                                              style: const TextStyle(
-                                                  fontSize: 15,
-                                                  color: Color(0xff142855))),
-                                        ),
-                                        const Divider(color: Color(0xff373851)),
-                                        const Text('Servicio de Transporte',
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 20)),
-                                        const Text(
-                                            'Buseta | Transporte 4x4 | Costo de Tarifa mínima 1.25, ',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black45)),
-                                        const Divider(color: Color(0xff373851)),
-                                      ])),
-                            ),
-                          ),
-                        ],
-                      ),
-                      GoogleMap(
-                        onMapCreated: _onMapCreated,
-                        initialCameraPosition: _initialPosition,
-                        markers: _markers,
-                      ),
+                      getImg(size),
+                      getCardDescripcion(size)
                     ],
                   ),
-                ),
+                  GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: _initialPosition,
+                    markers: _markers,
+                  ),
+                ],
               ),
-              getGNav()
-            ],
+            ),
           ),
+        ]),
+      ),
+    );
+  }
+
+  Widget getCardDescripcion(size) {
+    var  pad_width = size.width*0.03;
+    return Container(
+      margin: EdgeInsets.only(top: 20, left: pad_width, right: pad_width),
+      padding: EdgeInsets.only(left: 8, right: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(32),
+        color: Color(0xffd5dfff),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              offset: const Offset(1, 2),
+              blurRadius: 10.0),
+        ],
+      ),
+      //crossAxisAlignment: CrossAxisAlignment.start,
+
+      child: Container(
+          height:  size.height * 0.40,
+          // crossAxisAlignment:   CrossAxisAlignment.start,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                getTitulo(),
+                getCard(size),
+                getDescripcion()])),
+    );
+  }
+
+  Widget getImg(size) {
+    return SingleChildScrollView(
+      child: Stack(children: <Widget>[
+        Container(
+          width: double.infinity,
+          height: size.height / 3,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(Lista['url']), fit: BoxFit.cover),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget getTitulo() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, left: 18, right: 16, bottom: 16),
+      child: Text(
+        Lista['Nombre'].toString(),
+        textAlign: TextAlign.left,
+        style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+          letterSpacing: 0.27,
+          color: Colors.black,
         ),
       ),
     );
   }
 
-  Widget getTimeBoxUI(String text1, String txt2, Icon icon) {
+  Widget getCard(size) {
+    return Row(
+      children: <Widget>[
+        Spacer(),
+        getTimeBoxUI(Lista['temperatura'].toString(), 'temperatura', Icon(Icons.cloud),size),
+        Spacer(),
+        getTimeBoxUI(Lista['distancia'].toString(), 'Distancia', Icon(Icons.directions_car), size),
+        Spacer(),
+      ],
+    );
+  }
+
+  Widget getDescripcion() {
+    return Container(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 8),
+        child: Column(children: <Widget>[
+          Text(Lista['Descripcion'].toString(),
+              textAlign: TextAlign.justify,
+              style: const TextStyle(fontSize: 15, color: Color(0xff142855))),
+          Divider(color: Color(0xff373851)),
+          const Text('Servicio de Transporte',
+              style: TextStyle(color: Colors.black87, fontSize: 20)),
+          const Text('Buseta | Transporte 4x4 | Costo de Tarifa mínima 1.25, ',
+              style: TextStyle(fontSize: 15, color: Colors.black45)),
+          const Divider(color: Color(0xff373851)),
+        ]));
+  }
+  Widget getTimeBoxUI(String text1, String txt2, Icon icon,size) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(1.5),
       child: Container(
-        width: 125,
-        height: 68,
+        width: size.width * 0.3,
+        height: size.height * 0.12,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(16.0)),
@@ -202,33 +204,39 @@ class descripcion_paquete extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+
                   Icon(
                     icon.icon,
                     size: 26,
                     color: Color(0xff005CE6),
                   ),
-                  Spacer(),
+                  Spacer(flex: 1),
                   Text(
                     text1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 14,
+                      fontSize: 23,
                       letterSpacing: 0.27,
                       color: Colors.blue,
                     ),
                   ),
                 ],
               ),
-              Text(
-                txt2,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  letterSpacing: 0.27,
-                  color: Colors.black,
+              Container(
+                padding: const EdgeInsets.only(
+                    left: 1, right: 1, top: 5, bottom: 0),
+                child: Text(
+                  txt2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                    letterSpacing: 0.27,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ],
@@ -270,27 +278,7 @@ class descripcion_paquete extends StatelessWidget {
           icon: Icons.h_plus_mobiledata,
           text: 'Mapa',
         ),
-
       ],
-
-    ) ;
-  }
-
-  Widget getBody(size) {
-
-    return SingleChildScrollView(
-      child: Stack(
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: size.height * 0.5,
-              decoration: BoxDecoration(
-                image: DecorationImage( image: NetworkImage(Lista['url']),
-                    fit: BoxFit.cover),
-              ),
-            ),
-          ]
-      ),
     );
   }
 }

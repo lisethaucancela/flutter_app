@@ -38,6 +38,7 @@ class HomePage extends StatelessWidget {
 
   Widget getCardLugares(context) {
     var size = MediaQuery.of(context).size;
+    double wid = size.width*0.18;
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
@@ -46,11 +47,11 @@ class HomePage extends StatelessWidget {
 
       child: Container(
           margin:
-              const EdgeInsets.only(left: 30, top: 00, right: 30, bottom: 20),
+               EdgeInsets.only(left: wid, top: 00, right: wid, bottom: 20),
           padding:
-              const EdgeInsets.only(left: 0, top: 20, right: 0, bottom: 0),
-          height: size.height * 0.3,
-          //width: 340,
+              const EdgeInsets.only(left: 0, top: 15, right: 0, bottom: 0),
+          height: size.height * 0.33,
+
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
@@ -71,6 +72,7 @@ class HomePage extends StatelessWidget {
 
   Widget getCardPaquetes(context) {
     var size = MediaQuery.of(context).size;
+    double wid = size.width*0.18;
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
@@ -79,10 +81,10 @@ class HomePage extends StatelessWidget {
 
       child: Container(
           margin:
-              const EdgeInsets.only(left: 30, top: 00, right: 30, bottom: 20),
+               EdgeInsets.only(left: wid, top: 00, right: wid, bottom: 20),
           padding:
-              const EdgeInsets.only(left: 0, top: 20, right: 0, bottom: 0),
-          height: size.height * 0.30,
+              const EdgeInsets.only(left: 0, top: 15, right: 0, bottom: 0),
+          height: size.height * 0.33,
           //width: 340,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -108,8 +110,8 @@ class HomePage extends StatelessWidget {
       children: [
 
         Container(
-          width: (size.width - 80) / 2,
-          height: (size.width - 80) / 4,
+          width: (size.width ) / 3.5,
+          height: (size.height ) / 5.5,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
@@ -117,7 +119,7 @@ class HomePage extends StatelessWidget {
                   fit: BoxFit.cover)),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 30),
+          padding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
