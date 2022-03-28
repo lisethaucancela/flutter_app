@@ -17,20 +17,20 @@ class HomePage extends StatelessWidget {
         //child: Row(
         children: <Widget>[
           Container(
-            //height: 151,
+            width: MediaQuery.of(context).size.width * 1 ,
+            height: MediaQuery.of(context).size.height * 0.15,
             margin: const EdgeInsets.all(10),
             padding: const EdgeInsets.all(15),
-            child: const Text(
-              'WEKA',
-              style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xff142855),
-                  fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/Wekain_logo.png'), fit: BoxFit.contain),
+            ),
+            child: Container(
+
             ),
           ),
-          getCardLugares(context),
           getCardPaquetes(context),
+          getCardLugares(context),
         ]
         //)
         );
@@ -42,14 +42,14 @@ class HomePage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const PagQuilamo()));
+            MaterialPageRoute(builder: (context) =>  PagQuilamo()));
       },
 
       child: Container(
           margin:
                EdgeInsets.only(left: wid, top: 00, right: wid, bottom: 20),
           padding:
-              const EdgeInsets.only(left: 0, top: 15, right: 0, bottom: 0),
+              const EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 0),
           height: size.height * 0.33,
 
           decoration: BoxDecoration(
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
           child:
-              getCard(size,'images/paisaje.jpg', 'MORONA SANTIAGO', 'Conoce mas')),
+              getCard(size,'images/paisaje.jpg', 'GALERIA DE FOTOS', 'Conoce mas')),
       //)
     );
   }
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
           margin:
                EdgeInsets.only(left: wid, top: 00, right: wid, bottom: 20),
           padding:
-              const EdgeInsets.only(left: 0, top: 15, right: 0, bottom: 0),
+              const EdgeInsets.only(left: 0, top: 0, right: 0, bottom: 0),
           height: size.height * 0.33,
           //width: 340,
           decoration: BoxDecoration(
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
           child: getCard(size,
-              'images/img_05.png', 'Paquetes', 'Subtropical . 18 - 22.8°C')),
+              'images/Packing.jpg', 'PAQUETES TURISTICOS', 'Subtropical . 18 - 22.8°C')),
       //)
     );
   }
@@ -110,26 +110,26 @@ class HomePage extends StatelessWidget {
       children: [
 
         Container(
-          width: (size.width ) / 3.5,
-          height: (size.height ) / 5.5,
+          //width: (size.width ) *0.6,
+          height: size.height * 0.28,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                   image: AssetImage(image),
-                  fit: BoxFit.cover)),
+                  fit: BoxFit.fill)),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 20.0, 0, 0),
+          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0, 0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(title,
                   style: TextStyle(
                       color: Color(0xff142855),
                       fontSize: 18,
                       fontWeight: FontWeight.bold)),
-              SizedBox(height: 6.0),
-              Text(text, style: TextStyle(fontSize: 16, color: Colors.black45)),
+              //SizedBox(height: 6.0),
+              //Text(text, style: TextStyle(fontSize: 16, color: Colors.black45)),
             ],
           ),
         ),

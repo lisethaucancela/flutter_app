@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Pages/contacto.dart';
 import 'package:flutter_app/drawer_menu.dart';
 import 'package:flutter_app/Pages/home.dart';
+import 'package:flutter_app/Pages/contacto.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -23,9 +25,7 @@ class MyApp extends State<Example> {
   static String home = HomePage.routeName;
   static final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text(
-      'Profile',
-    ),
+    contacto(),
   ];
   int _selectedIndex = 0;
 
@@ -37,15 +37,15 @@ class MyApp extends State<Example> {
           home: (context) => HomePage(),
         },
         home: Scaffold(
-            appBar: AppBar(
-                title: const Text('TURISMO APP',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                    )),
-                backgroundColor: const Color(0xff142855)),
-            drawer: const DrawerMenu(),
+            //appBar: AppBar(
+                //title: const Text('TURISMO APP',
+                  //  style: TextStyle(
+                 //     color: Colors.white,
+                 //     fontSize: 18.0,
+                  //    fontWeight: FontWeight.w500,
+                  //  )),
+                //backgroundColor: const Color(0xff142855)),
+            //drawer: const DrawerMenu(),
             backgroundColor: const Color(0xffF0F3F8),
             body: Center(
               child: _widgetOptions.elementAt(_selectedIndex),

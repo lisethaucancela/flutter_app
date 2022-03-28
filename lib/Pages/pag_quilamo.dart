@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 
 class PagQuilamo extends StatelessWidget {
-   const PagQuilamo({Key? key}) : super(key: key);
+    PagQuilamo({Key? key}) : super(key: key);
 
+   final imageList = [
+     'images/paisaje.jpg',
+     'images/img_05.png',
+     'images/Wekain_logo.png',
+     'images/Packing.jpg'
+   ];
   @override
   Widget build(BuildContext context) {
     return   Scaffold (
         appBar: AppBar(
-          title: const Text('Mirador de Quilamo',
+          title: const Text('Galería de Fotos',
           style: TextStyle(
           color: Colors.white,
           fontSize: 18.0,
@@ -17,40 +24,22 @@ class PagQuilamo extends StatelessWidget {
           backgroundColor: const Color(0xff373851)
         ),
 
-      body: ListView(
-        //crossAxisAlignment: CrossAxisAlignment.stretch,
-
-        children:  [
-          const Image(image: AssetImage('images/paisaje.jpg'),height: 240, fit: BoxFit.cover, ),
-
-          const titleSection(),
-
-          const Text('Horarios Atención', style: TextStyle( color: Colors.black87,fontSize: 20 )),
-          Row(
-            children:  const [
-              Text('Lunes a Domingo  incluído feriados | 8:00 a 22:00', style: TextStyle(fontSize: 15, color: Colors.black45)),
-            ],
-          ),
-          const Divider(color: Color(0xff373851)),
-          const Text('Servicio de Transporte', style: TextStyle( color: Colors.black87,fontSize: 20 )),
-          Row(
-            children:  const [
-              Text('Buseta | Transporte 4x4 | Costo de Tarifa mínima 1.25, ', style: TextStyle(fontSize: 15, color: Colors.black45)),
-            ],
-          ),
-          const Divider(color: Color(0xff373851)),
-          const Text('Atractivos Turísticos', style: TextStyle( color: Colors.black87,fontSize: 20 )),
-          Text('Visita a talleres artísticos', style: TextStyle(fontSize: 15, color: Colors.black45)),
-          Text('Observación de flora y fauna', style: TextStyle(fontSize: 15, color: Colors.black45)),
-          Text('Camping', style: TextStyle(fontSize: 15, color: Colors.black45)),
-          Text('Canyoning', style: TextStyle(fontSize: 15, color: Colors.black45)),
-          const Divider(color: Color(0xff373851)),
-          const Text('Actividad Turística', style: TextStyle( color: Colors.black87,fontSize: 20 )),
-          Text('Alquiler y venta de equipo especializado', style: TextStyle(fontSize: 15, color: Colors.black45)),
-          Text('Venta de artesanías y merchandising', style: TextStyle(fontSize: 15, color: Colors.black45)),
-
-          const Divider(color: Color(0xff373851)),
-        ],
+      body: Container(
+        child: PhotoViewGallery.builder(
+          itemCount: imageList.length,
+          builder: (context, index) {
+            return PhotoViewGalleryPageOptions(
+              imageProvider: AssetImage(
+                imageList[index],
+              ),
+              minScale: PhotoViewComputedScale.contained * 0.8,
+              maxScale: PhotoViewComputedScale.covered * 2,
+            );
+          },
+          scrollPhysics: BouncingScrollPhysics(),
+          backgroundDecoration: BoxDecoration(),
+          enableRotation: true,
+        ),
       ),
 
     ) ;
