@@ -101,7 +101,7 @@ class descripcion_paquete extends StatelessWidget {
       child: Stack(children: <Widget>[
         Container(
           width: double.infinity,
-          height: size.height * 0.80,
+          //height: size.height * 0.80,
           decoration: BoxDecoration(
             image: DecorationImage(
                 image:
@@ -122,14 +122,15 @@ class descripcion_paquete extends StatelessWidget {
                   color: Color(0xffd0d0d0).withOpacity(0.7),
                   shape: BoxShape.rectangle,
                 ),
+
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         width: 250,
                         //height: 60,
                         margin: EdgeInsets.only(
-                            top: 5, left: 5, right: 5, bottom: 5),
+                            top: size.height * 0.1, left: 5, right: 5, bottom: 5),
                         // padding: EdgeInsets.only(top: 6, left: 5, right: 5, bottom: 6),
 
                         child: Column(children: <Widget>[
@@ -176,10 +177,10 @@ class descripcion_paquete extends StatelessWidget {
                                   letterSpacing: -1)),
                         ]),
                       ),
-                      SizedBox(height: size.height * 0.1),
-                      getCardPrecio('Incluye', 'incluye'),
-                      getCardPrecio('No Incluye', 'no incluye'),
-                      getCardPrecio('Que llevar', 'llevar')
+                      SizedBox(height: size.height * 0.08),
+                      getCardPrecio('Incluye', 'incluye', size),
+                      getCardPrecio('No Incluye', 'no_incluye', size),
+                      getCardPrecio('Que llevar', 'llevar',size)
                     ]),
               ),
             ],
@@ -191,8 +192,7 @@ class descripcion_paquete extends StatelessWidget {
 
 
   Widget getItinerario(size) {
-    return SingleChildScrollView(
-      child: Stack(children: <Widget>[
+    return  Stack(children: <Widget>[
         Container(
           width: double.infinity,
           //height: size.height * 0.81,
@@ -255,8 +255,8 @@ class descripcion_paquete extends StatelessWidget {
             ],
           ),
         ),
-      ]),
-    );
+      ]);
+
   }
   Widget getCardDescripcion(size) {
     var pad_width = size.width * 0.03;
@@ -276,6 +276,7 @@ class descripcion_paquete extends StatelessWidget {
 
       child: Container(
           height: size.height * 0.3  + Lista['Descripcion'].toString().length/7 ,
+          width: size.width * 0.7,
           // crossAxisAlignment:   CrossAxisAlignment.start,
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -332,10 +333,10 @@ class descripcion_paquete extends StatelessWidget {
     );
   }
 
-  Widget getCardPrecio(Titulo, Descripcion) {
+  Widget getCardPrecio(Titulo, Descripcion, size) {
     return Container(
       width: 250,
-      height: 60,
+      height: size.height * 0.01 + Lista['Descripcion'].toString().length/5,
       margin: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
       padding: EdgeInsets.only(top: 6, left: 5, right: 5, bottom: 6),
       decoration: BoxDecoration(
@@ -361,8 +362,8 @@ class descripcion_paquete extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(1.5),
       child: Container(
-        width: size.width * 0.45,
-        height: size.height * 0.08,
+        width: size.width * 0.55,
+        height: size.height * 0.08 ,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(8.0)),
