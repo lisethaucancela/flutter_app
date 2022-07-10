@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/Pages/contacto.dart';
+import 'package:flutter_app/Pages/escribenos.dart';
 import 'package:flutter_app/drawer_menu.dart';
 import 'package:flutter_app/Pages/home.dart';
 import 'package:flutter_app/Pages/contacto.dart';
@@ -25,7 +26,9 @@ class MyApp extends State<Example> {
   static String home = HomePage.routeName;
   static final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
+    escribenos(),
     contacto(),
+
   ];
   int _selectedIndex = 0;
 
@@ -95,6 +98,10 @@ class MyApp extends State<Example> {
           GButton(
             icon: Icons.home,
             text: 'Inicio',
+          ),
+          GButton(
+            icon: Icons.mail_outline ,
+            text: 'Escribenos',
           ),
           GButton(
             icon: Icons.call,
